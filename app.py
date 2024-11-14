@@ -6,11 +6,11 @@ from threading import Lock
 
 app = Flask(__name__)
 
-DAYS = 15
+DAYS = 365
 DAYS_IMAGE = 10
 DAYS_GARDEN = 30
 DAYS_WEIGHT = 90
-CORS(app)  
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000", "credentials": True}})
 
 pump_lock = Lock()
 picture_lock = Lock()
@@ -166,7 +166,6 @@ def get_picture_2_periodical():
     picture_periodical = get_owl_data_periodical_last_updated("kip_test_2_picture", "picture", DAYS_IMAGE)
     return jsonify({"picture_periodical": [picture_periodical]})
 
-
 @app.route('/sound_2')
 def get_sound_2():
     sound = get_owl_data("kip_test_2_sound", "sound")
@@ -254,7 +253,4 @@ def run_pump():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True, port=10000)
-
-
-@
+    app.run(debug=True, port=8000)
