@@ -6,7 +6,7 @@ from threading import Lock
 
 app = Flask(__name__)
 
-DAYS = 365
+DAYS = 365*5
 DAYS_IMAGE = 10
 DAYS_GARDEN = 30
 DAYS_WEIGHT = 90
